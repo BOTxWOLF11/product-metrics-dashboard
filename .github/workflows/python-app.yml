@@ -1,0 +1,33 @@
+name: Python CI (smoke)
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    - name: Run smoke check
+      run: |
+        python - <<'PY'
+import pandas as pd
+import sys
+try:
+    df = pd.read_csv('product_metrics_events.csv', parse_dates=['date','reg_date'])
+    print('Loaded events:', len(df))
+except Exception as e:
+    print('Failed to load CSV:', e)
+    sys.exit(1)
+PY
