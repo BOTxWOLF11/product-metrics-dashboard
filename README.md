@@ -71,18 +71,3 @@ pip install -r requirements.txt
 ### A/B Test Hypotheses:
 1. Sending personalized push notifications to *At Risk* users will increase 7-day retention by +5–7%.
 2. Offering a limited-time discount to *Loyal* users may increase ARPU by +10% in the following month.
-
-## How to publish to GitHub quickly
-1. Create a new repository on GitHub (via web UI or `gh repo create <repo-name>`).
-2. From this project folder:
-```bash
-git init
-git add .
-git commit -m "Initial commit — Product Metrics Dashboard"
-git branch -M main
-git remote add origin git@github.com:<your-username>/<your-repo>.git
-git push -u origin main
-```
-3. Add a GitHub Pages or update README badges if needed.
-
----
